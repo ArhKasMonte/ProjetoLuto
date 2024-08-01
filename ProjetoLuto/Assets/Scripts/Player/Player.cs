@@ -18,47 +18,51 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidbody2d;
 
     [SerializeField]
-    private float velocidadeMovimento; //Alterar na velocidade do personagem no inspetor
+    private float velocidadeMovimento; // Alterar na velocidade do personagem no inspetor
 
-    bool movendo = false;
-    bool parado = true;
+    private bool parado = true;
+    private bool podeMover = true; // Adiciona uma variável para controlar o movimento
     private int inputXHash = Animator.StringToHash("InputX");
     private int inputYHash = Animator.StringToHash("InputY");
 
-
-    Vector2 direcaoMov;
+    private Vector2 direcaoMov;
 
     private void FixedUpdate()
     {
-
-        MovePlayer();
+        if (podeMover)
+        {
+            MovePlayer();
+        }
     }
 
     void Update()
     {
         GetMoveDirection();
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            podeMover = !podeMover; // Alterna a capacidade de movimentação
+            PlayerDialogo.Instancia.Dialogo();
+        }
     }
 
     private void LateUpdate()
     {
         AnimacaoPlayer();
     }
+
     private void GetMoveDirection()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");// pegar a informação se é -1 ou 1
-        float vertical = Input.GetAxisRaw("Vertical");// pegar a informação se é -1 ou 1
+        float horizontal = Input.GetAxisRaw("Horizontal"); // Pega a informação se é -1 ou 1
+        float vertical = Input.GetAxisRaw("Vertical"); // Pega a informação se é -1 ou 1
 
-        direcaoMov = new Vector2(horizontal, vertical).normalized;// Pegando o X e o Y
-
-        //Debug.Log(direcaoMov + " -> " + direcaoMov.magnitude);// vizualizar o X e Y durante o jogo
+        direcaoMov = new Vector2(horizontal, vertical).normalized; // Pegando o X e o Y
     }
 
     private void MovePlayer()
     {
         if (parado == true && direcaoMov != Vector2.zero)
         {
-            rigidbody2d.velocity = direcaoMov * velocidadeMovimento;// Pegando o X e o Y e mutiplicando pela velocidade definida no inspetor
-
+            rigidbody2d.velocity = direcaoMov * velocidadeMovimento; // Pegando o X e o Y e multiplicando pela velocidade definida no inspetor
 
             if (direcaoMov.x > 0)
             {
@@ -67,7 +71,6 @@ public class Player : MonoBehaviour
             else if (direcaoMov.x < 0)
             {
                 spriteRenderer.flipX = false;
-
             }
         }
         else
@@ -89,16 +92,5 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Player_Run", false);
         }
-
-    }
-
-    void BloquearMovimento()
-    {
-        parado = false;
-    }
-
-    void LiberarMovimento()
-    {
-        parado = true;
     }
 }
