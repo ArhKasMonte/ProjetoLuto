@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c0f575c51052649a7cc56dd90c8a7f, type: 3}
+  m_Name: Luzana Comeco 2
+  m_EditorClassIdentifier: 
+  bloqueado: 0
+  titulo: Seguinte...
+  falasdialogos:
+  - identificador: '[Luzana]: Tudo bem amiga?'
+    ator: {fileID: 11400000, guid: 15f971c0d34d12e4b9b0b3d738db59c2, type: 2}
+    texto: Tudo bem amiga?
+  - identificador: '[Beatriz]: Claro minha nobre'
+    ator: {fileID: 11400000, guid: 76ecdca03aa2ef44f964f1152c83912b, type: 2}
+    texto: Claro minha nobre
+  - identificador: '[Beatriz]: Apeans um dia ruim'
+    ator: {fileID: 11400000, guid: 76ecdca03aa2ef44f964f1152c83912b, type: 2}
+    texto: Apeans um dia ruim
+  - identificador: "[Luzana]: Tudo bem ent\xE3o :)"
+    ator: {fileID: 11400000, guid: 15f971c0d34d12e4b9b0b3d738db59c2, type: 2}
+    texto: "Tudo bem ent\xE3o :)"
+  recursosParaDesbloquear:
+  - {fileID: 11400000, guid: 76ecdca03aa2ef44f964f1152c83912b, type: 2}
+  recursosParaBloquear: []

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a964811354f6f44ab998491c10ae7ba, type: 3}
   m_Name: Luzana
   m_EditorClassIdentifier: 
+  bloqueado: 1
   nome: Luzana
   foto: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

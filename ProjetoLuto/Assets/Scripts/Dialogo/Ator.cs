@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Novo ator", menuName = "Sistema de diálogo/Novo Ator")]
-public class Ator : RecusoDesbloqueavel
+public class Ator : RecursoDesbloqueavel
 {
     [SerializeField] private string nome;
     [SerializeField] private Sprite foto;

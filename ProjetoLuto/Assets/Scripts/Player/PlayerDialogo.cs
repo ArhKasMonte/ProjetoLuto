@@ -4,30 +4,46 @@ using UnityEngine;
 
 public class PlayerDialogo : MonoBehaviour
 {
-    [SerializeField] private Dialogo dialogo;
+    [SerializeField] private Ator ator;
+    [SerializeField] private Dialogo[] dialogos;
 
-    private static PlayerDialogo instancia;
     private bool playerNoRange = false;
 
     private void Awake()
     {
-        instancia = this;
-    }
-
-    public static PlayerDialogo Instancia
-    {
-        get
+        if (ator.Bloqueado)
         {
-            return instancia;
+            Esconder();
         }
+        ator.RecursoDesbloqueado += Exibir;
+        ator.RecursoBloqueado += Esconder;
     }
-
+    private void Update()
+    {
+        Dialogo();
+    }
     public void Dialogo()
     {
-        if (playerNoRange)
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            TelaDialogo.Instancia.Exibir(dialogo);
+            if (playerNoRange)
+            {
+                TelaListaDialogo.Instance.Exibir(ator, ObeterDialogosDesbloqueados());
+            }
         }
+    }
+
+    private List<Dialogo> ObeterDialogosDesbloqueados()
+    {
+        List<Dialogo> dialogosDesbloqueados = new List<Dialogo>();
+        foreach (Dialogo dialogo in dialogos)
+        {
+            if (!dialogo.Bloqueado)
+            {
+                dialogosDesbloqueados.Add(dialogo);
+            }
+        }
+        return dialogosDesbloqueados;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,7 +51,7 @@ public class PlayerDialogo : MonoBehaviour
         if (collision.gameObject.tag == "PlayerDialogo")
         {
             playerNoRange = true;
-            Debug.Log("Entrou no range para falar");
+            Debug.Log($"Entrou no range para falar {playerNoRange}");
         }
     }
 
@@ -44,8 +60,19 @@ public class PlayerDialogo : MonoBehaviour
         if (collision.gameObject.tag == "PlayerDialogo")
         {
             playerNoRange = false;
-            Debug.Log("Saiu do range para falar");
+            Debug.Log($"Saiu do range para falar {playerNoRange}");
+
         }
+    }
+
+    private void Esconder()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    private void Exibir()
+    {
+        this.gameObject.SetActive(true);
     }
 }
     

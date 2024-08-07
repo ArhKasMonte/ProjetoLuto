@@ -9,7 +9,9 @@ public class TelaDialogo : MonoBehaviour
     [SerializeField] private Image fotoAtor;
     [SerializeField] private TextMeshProUGUI textoNomeAtor;
     [SerializeField] private TextMeshProUGUI textoFalaDialogo;
+    [SerializeField] private float intervaloTempoEntreLetrasEmSegundos;
 
+    private Coroutine preencherTextoCoroutine;
     private Dialogo dialogo;
 
     private static TelaDialogo instancia;
@@ -33,8 +35,8 @@ public class TelaDialogo : MonoBehaviour
         this.dialogo = dialogo;
         this.dialogo.Iniciar();
 
-        ExibirFalaAtual();
         gameObject.SetActive(true);
+        ExibirFalaAtual();
     }
 
     public void Avancar()
@@ -46,6 +48,7 @@ public class TelaDialogo : MonoBehaviour
         }
         else
         {
+            dialogo.Concluir();
             Esconder();
         }
     }
@@ -61,6 +64,22 @@ public class TelaDialogo : MonoBehaviour
         Ator ator = falaAtual.Ator;
         fotoAtor.sprite = ator.Foto;
         textoNomeAtor.text = ator.Nome;
-        textoFalaDialogo.text = falaAtual.Texto;
+        //textoFalaDialogo.text = falaAtual.Texto;
+
+        if (preencherTextoCoroutine != null)
+        {
+            StopCoroutine(preencherTextoCoroutine);
+        }
+        preencherTextoCoroutine = StartCoroutine(PreencherConteudoTextoAosPoucos(falaAtual.Texto));
+    }
+
+    private IEnumerator PreencherConteudoTextoAosPoucos(string texto)
+    {
+        textoFalaDialogo.text = "";
+        for (int i = 0; i < texto.Length; i++)
+        {
+            textoFalaDialogo.text += texto[i];
+            yield return new WaitForSeconds(intervaloTempoEntreLetrasEmSegundos);
+        }
     }
 }

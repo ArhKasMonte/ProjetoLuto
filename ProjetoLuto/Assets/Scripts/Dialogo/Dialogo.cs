@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (fileName = "Novo dialogo", menuName ="Sistema de diálogo/Novo diálogo")]
-public class Dialogo : RecusoDesbloqueavel
+public class Dialogo : RecursoDesbloqueavel
 {
+    [SerializeField] private string titulo;
     [SerializeField] private FalaDialogo[] falasdialogos;
+    [SerializeField] private RecursoDesbloqueavel[] recursosParaDesbloquear;
+    [SerializeField] private RecursoDesbloqueavel[] recursosParaBloquear;
 
     private int indiceFalaAtual;
 
@@ -20,6 +23,14 @@ public class Dialogo : RecusoDesbloqueavel
     public void Iniciar()
     {
         indiceFalaAtual = 0;
+    }
+
+    public string Titulo
+    {
+        get
+        {
+            return titulo;
+        }
     }
 
     public FalaDialogo FalaAtual
@@ -39,6 +50,24 @@ public class Dialogo : RecusoDesbloqueavel
         if (TemProximaFala())
         {
             indiceFalaAtual++;
+        }
+    }
+
+    public void Concluir()
+    {
+        foreach (RecursoDesbloqueavel recursoParaDesbloquear in recursosParaDesbloquear)
+        {
+            if (recursoParaDesbloquear.Bloqueado)
+            {
+                recursoParaDesbloquear.Desbloquear();
+            }
+        }
+        foreach (RecursoDesbloqueavel recursoParaBloquear in recursosParaBloquear)
+        {
+            if (!recursoParaBloquear.Bloqueado)
+            {
+                recursoParaBloquear.Bloquear();
+            }
         }
     }
 

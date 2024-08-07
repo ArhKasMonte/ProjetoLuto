@@ -20,12 +20,26 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float velocidadeMovimento; // Alterar na velocidade do personagem no inspetor
 
+    [SerializeField]
+    private PlayerDialogo playerDialogo;
+
     private bool parado = true;
     private bool podeMover = true; // Adiciona uma variável para controlar o movimento
     private int inputXHash = Animator.StringToHash("InputX");
     private int inputYHash = Animator.StringToHash("InputY");
 
     private Vector2 direcaoMov;
+
+    private void Start()
+    {
+        // Tente encontrar automaticamente o componente PlayerDialogo
+        playerDialogo = FindObjectOfType<PlayerDialogo>();
+
+        if (playerDialogo == null)
+        {
+            Debug.LogError("PlayerDialogo não encontrado!");
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -38,11 +52,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         GetMoveDirection();
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            podeMover = !podeMover; // Alterna a capacidade de movimentação
-            PlayerDialogo.Instancia.Dialogo();
-        }
     }
 
     private void LateUpdate()
