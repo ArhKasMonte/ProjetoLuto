@@ -21,6 +21,9 @@ MonoBehaviour:
   - identificador: '[Beatriz]: Diga meu nobre'
     ator: {fileID: 11400000, guid: 76ecdca03aa2ef44f964f1152c83912b, type: 2}
     texto: Diga meu nobre
+  mementosNecessarios:
+  - {fileID: 11400000, guid: 67efa584908c14845ab7a3409c338a52, type: 2}
+  - {fileID: 11400000, guid: a64870562a6cf9141a9c6fc2d0b51447, type: 2}
   recursosParaDesbloquear: []
   recursosParaBloquear:
   - {fileID: 11400000}

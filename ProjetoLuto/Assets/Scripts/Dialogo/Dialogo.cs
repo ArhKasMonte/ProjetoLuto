@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "Novo dialogo", menuName ="Sistema de diálogo/Novo diálogo")]
+[CreateAssetMenu(fileName = "Novo dialogo", menuName = "Sistema de diálogo/Novo diálogo")]
 public class Dialogo : RecursoDesbloqueavel
 {
     [SerializeField] private string titulo;
     [SerializeField] private FalaDialogo[] falasdialogos;
+    [SerializeField] private Memento[] mementosNecessarios;  // Mementos necessários para desbloquear este diálogo
     [SerializeField] private RecursoDesbloqueavel[] recursosParaDesbloquear;
     [SerializeField] private RecursoDesbloqueavel[] recursosParaBloquear;
 
@@ -27,10 +28,7 @@ public class Dialogo : RecursoDesbloqueavel
 
     public string Titulo
     {
-        get
-        {
-            return titulo;
-        }
+        get { return titulo; }
     }
 
     public FalaDialogo FalaAtual
@@ -41,7 +39,7 @@ public class Dialogo : RecursoDesbloqueavel
             {
                 return falasdialogos[indiceFalaAtual];
             }
-                return null; 
+            return null;
         }
     }
 
@@ -51,6 +49,23 @@ public class Dialogo : RecursoDesbloqueavel
         {
             indiceFalaAtual++;
         }
+    }
+
+    public bool TemProximaFala()
+    {
+        return indiceFalaAtual < (falasdialogos.Length - 1);
+    }
+
+    public bool PodeDesbloquearComMemento(Memento[] mementosObtidos)
+    {
+        foreach (Memento mementoNecessario in mementosNecessarios)
+        {
+            if (!System.Array.Exists(mementosObtidos, memento => memento == mementoNecessario))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void Concluir()
@@ -69,14 +84,5 @@ public class Dialogo : RecursoDesbloqueavel
                 recursoParaBloquear.Bloquear();
             }
         }
-    }
-
-    public bool TemProximaFala()
-    {
-        if (indiceFalaAtual < (falasdialogos.Length - 1))
-        {
-            return true;
-        }
-        return false;
     }
 }

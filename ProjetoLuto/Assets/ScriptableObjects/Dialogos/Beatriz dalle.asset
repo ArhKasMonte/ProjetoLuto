@@ -21,6 +21,10 @@ MonoBehaviour:
   - identificador: '[Luzana]: Eu sempre soube que voce era gay'
     ator: {fileID: 11400000, guid: 15f971c0d34d12e4b9b0b3d738db59c2, type: 2}
     texto: Eu sempre soube que voce era gay
+  mementosNecessarios:
+  - {fileID: 11400000, guid: 67efa584908c14845ab7a3409c338a52, type: 2}
+  - {fileID: 11400000, guid: a64870562a6cf9141a9c6fc2d0b51447, type: 2}
+  - {fileID: 11400000, guid: 0f6ea8e4dc2244c4d88bd0d3d745dad5, type: 2}
   recursosParaDesbloquear:
   - {fileID: 11400000, guid: 15f971c0d34d12e4b9b0b3d738db59c2, type: 2}
   recursosParaBloquear:

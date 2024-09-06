@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c0f575c51052649a7cc56dd90c8a7f, type: 3}
   m_Name: Beatriz dois
   m_EditorClassIdentifier: 
-  bloqueado: 0
+  bloqueado: 1
   titulo: gogogoog
   falasdialogos:
   - identificador: "[Beatriz]: Ser\xE1 que foiste dormir?"
@@ -21,5 +21,6 @@ MonoBehaviour:
   - identificador: "[Luzana]: N\xE3o senhora, estou acordada"
     ator: {fileID: 11400000, guid: 15f971c0d34d12e4b9b0b3d738db59c2, type: 2}
     texto: "N\xE3o senhora, estou acordada"
+  mementosNecessarios: []
   recursosParaDesbloquear: []
   recursosParaBloquear: []

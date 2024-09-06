@@ -27,6 +27,8 @@ MonoBehaviour:
   - identificador: "[Luzana]: Tudo bem ent\xE3o :)"
     ator: {fileID: 11400000, guid: 15f971c0d34d12e4b9b0b3d738db59c2, type: 2}
     texto: "Tudo bem ent\xE3o :)"
+  mementosNecessarios: []
   recursosParaDesbloquear:
   - {fileID: 11400000, guid: 76ecdca03aa2ef44f964f1152c83912b, type: 2}
+  - {fileID: 11400000, guid: 7a4feb783292b0f4b8af171a1184ef75, type: 2}
   recursosParaBloquear: []
